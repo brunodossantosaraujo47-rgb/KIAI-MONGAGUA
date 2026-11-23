@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<title>KIAI MONGAGUÁ | Gestão de Karatê</title>
+
+<style>
+:root {
+ --bg:#0b0b0d;
+ --panel:#151518;
+ --panel2:#1d1d22;
+ --line:#303037;
+ --text:#f5f5f5;
+ --muted:#a5a5ad;
+ --red:#e3262e;
+ --red2:#a9161d;
+ --green:#35b779;
+}
+
+* {
+ box-sizing:border-box;
+}
+
+body {
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font:15px/1.5 Arial,sans-serif;
+}
+
+button,input,select,textarea {
+ font:inherit;
+}
+
+button {
+ cursor:pointer;
+}
+
+.app {
+ min-height:100vh;
+ display:grid;
+ grid-template-columns:255px 1fr;
+}
+
+.sidebar {
+ background:#101013;
+ border-right:1px solid var(--line);
+ padding:22px 16px;
+ display:flex;
+ flex-direction:column;
+ gap:22px;
+}
+
+.brand {
+ display:flex;
+ align-items:center;
+ gap:11px;
+ padding:5px 8px 18px;
+ border-bottom:1px solid var(--line);
+}
+
+.brand-mark {
+ width:42px;
+ height:42px;
+ background:var(--red);
+ border-radius:11px;
+ display:grid;
+ place-items:center;
+ font-weight:900;
+}
+
+.brand strong {
+ display:block;
+ letter-spacing:1.5px;
+}
+
+.brand small {
+ color:var(--muted);
+}
+
+.rolebox {
+ background:var(--panel);
+ border:1px solid var(--line);
+ padding:12px;
+ border-radius:12px;
+}
+
+.rolebox label {
+ display:block;
+ color:var(--muted);
+ font-size:11px;
+ margin-bottom:7px;
+}
+
+.rolebox select {
+ width:100%;
+ background:#222228;
+ color:white;
+ border:1px solid var(--line);
+ padding:10px;
+ border-radius:8px;
+}
+
+.nav-title {
+ color:#73737d;
+ font-size:10px;
+ letter-spacing:1.4px;
+ padding:0 10px;
+}
+
+nav {
+ display:grid;
+ gap:5px;
+}
+
+.nav-btn {
+ border:0;
+ background:transparent;
+ color:#c7c7ce;
+ text-align:left;
+ padding:11px 12px;
+ border-radius:9px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+ background:#2a1719;
+ color:white;
+}
+
+.nav-btn.active {
+ box-shadow:inset 3px 0 var(--red);
+}
+
+.side-note {
+ margin-top:auto;
+ color:#777;
+ font-size:11px;
+}
+
+main {
+ min-width:0;
+}
+
+.topbar {
+ height:74px;
+ border-bottom:1px solid var(--line);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 30px;
+ background:#101013;
+}
+
+.topbar h2 {
+ font-size:18px;
+}
+
+.avatar {
+ width:36px;
+ height:36px;
+ border-radius:50%;
+ background:var(--red);
+ display:grid;
+ place-items:center;
+}
+
+.content {
+ max-width:1400px;
+ margin:auto;
+ padding:30px;
+}
+
+.welcome {
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:20px;
+ margin-bottom:25px;
+}
+
+.eyebrow {
+ color:var(--red);
+ font-size:11px;
+ font-weight:bold;
+ letter-spacing:1.5px;
+}
+
+h1 {
+ font-size:27px;
+ margin:5px 0;
+}
+
+.sub {
+ color:var(--muted);
+}
+
+.actions {
+ display:flex;
+ gap:9px;
+ flex-wrap:wrap;
+}
+
+.btn {
+ border:1px solid var(--line);
+ background:var(--panel2);
+ color:white;
+ padding:10px 14px;
+ border-radius:8px;
+}
+
+.btn.primary {
+ background:var(--red);
+ border-color:var(--red);
+}
+
+.stats {
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:14px;
+ margin-bottom:22px;
+}
+
+.stat,.card {
+ background:var(--panel);
+ border:1px solid var(--line);
+ border-radius:13px;
+}
+
+.stat {
+ padding:18px;
+}
+
+.stat strong {
+ display:block;
+ font-size:28px;
+ margin-top:8px;
+}
+
+.grid2 {
+ display:grid;
+ grid-template-columns:1.25fr .75fr;
+ gap:16px;
+}
+
+.card {
+ padding:20px;
+ margin-bottom:16px;
+}
+
+.card-head {
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ margin-bottom:15px;
+}
+
+.card h3 {
+ font-size:15px;
+}
+
+.muted,.smalltext {
+ color:var(--muted);
+}
+
+.smalltext {
+ font-size:12px;
+}
+
+table {
+ width:100%;
+ border-collapse:collapse;
+ font-size:13px;
+}
+
+th,td {
+ text-align:left;
+ padding:12px 9px;
+ border-bottom:1px solid var(--line);
+}
+
+th {
+ color:#92929c;
+ font-size:11px;
+}
+
+.tag {
+ display:inline-block;
+ padding:4px 8px;
+ border-radius:30px;
+ background:#29292f;
+ font-size:11px;
+}
+
+.tag.ok {
+ background:#143326;
+ color:#6fe0aa;
+}
+
+.empty {
+ padding:25px;
+ text-align:center;
+ color:var(--muted);
+ border:1px dashed var(--line);
+ border-radius:10px;
+}
+
+.page {
+ display:none;
+}
+
+.page.active {
+ display:block;
+}
+
+.field {
+ display:grid;
+ gap:6px;
+ margin-bottom:13px;
+}
+
+.field label {
+ font-size:12px;
+ color:#bdbdc5;
+}
+
+.field input,
+.field select,
+.field textarea {
+ width:100%;
+ background:#101014;
+ border:1px solid var(--line);
+ border-radius:8px;
+ color:white;
+ padding:11px;
+}
+
+.form-grid {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:0 14px;
+}
+
+.field.full {
+ grid-column:1/-1;
+}
+
+.modal-backdrop {
+ position:fixed;
+ inset:0;
+ background:#000b;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
+ z-index:10;
+}
+
+.modal-backdrop.open {
+ display:flex;
+}
+
+.modal {
+ background:#18181d;
+ border:1px solid var(--line);
+ border-radius:14px;
+ width:min(560px,100%);
+ max-height:90vh;
+ overflow:auto;
+ padding:22px;
+}
+
+.modal-head {
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.close {
+ background:none;
+ border:0;
+ color:white;
+ font-size:24px;
+}
+
+.modal-actions {
+ display:flex;
+ justify-content:flex-end;
+ gap:9px;
+ margin-top:18px;
+}
+
+.notice {
+ border:1px solid #604026;
+ background:#2c2117;
+ color:#e9c58b;
+ border-radius:10px;
+ padding:12px;
+ margin-bottom:18px;
+ font-size:12px;
+}
+
+@media(max-width:900px) {
+ .app {
+  grid-template-columns:1fr;
+ }
+ .sidebar {
+  display:none;
+ }
+ .sidebar.open {
+  display:flex;
+  position:fixed;
+  z-index:15;
+  inset:0 auto 0 0;
+  width:270px;
+ }
+ .stats {
+  grid-template-columns:repeat(2,1fr);
+ }
+ .grid2 {
+  grid-template-columns:1fr;
+ }
+ .content {
+  padding:20px 15px;
+ }
+}
+
+@media(max-width:520px) {
+ .welcome {
+  display:block;
+ }
+ .form-grid {
+  grid-template-columns:1fr;
+ }
+ .field.full {
+  grid-column:auto;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+
+<div class="brand">
+ <div class="brand-mark">K!</div>
+ <div>
+  <strong>KIAI <span style="color:red">MONGAGUÁ</span></strong>
+  <small>GESTÃO DE KARATÊ</small>
+ </div>
+</div>
+
+<div class="rolebox">
+ <label>Visualizar como</label>
+ <select id="roleSelect" onchange="changeRole()">
+  <option value="sensei">Sensei — Administrador</option>
+  <option value="atleta">Atleta</option>
+  <option value="responsavel">Responsável</option>
+ </select>
+</div>
+
+<div class="nav-title">MENU PRINCIPAL</div>
+
+<nav id="nav">
+ <button class="nav-btn active" data-page="inicio" onclick="go('inicio')">▦ Visão geral</button>
+ <button class="nav-btn" data-page="atletas" onclick="go('atletas')">♟ Atletas</button>
+ <button class="nav-btn" data-page="responsaveis" onclick="go('responsaveis')">♧ Responsáveis</button>
+ <button class="nav-btn" data-page="turmas" onclick="go('turmas')">◫ Turmas</button>
+ <button class="nav-btn" data-page="frequencia" onclick="go('frequencia')">✓ Frequência</button>
+ <button class="nav-btn" data-page="esportivo" onclick="go('esportivo')">🏅 Histórico esportivo</button>
+ <button class="nav-btn" data-page="agenda" onclick="go('agenda')">▣ Agenda e eventos</button>
+ <button class="nav-btn" data-page="conteudos" onclick="go('conteudos')">▶ Conteúdos</button>
+ <button class="nav-btn" data-page="comunicados" onclick="go('comunicados')">◉ Comunicados</button>
+</nav>
+
+<div class="side-note">
+ KIAI MONGAGUÁ · Gestão esportiva
+</div>
+
+</aside>
+
+<main>
+
+<header class="topbar">
+ <div style="display:flex;align-items:center;gap:12px">
+  <button class="btn" onclick="toggleMenu()">☰</button>
+  <h2 id="topTitle">Visão geral</h2>
+ </div>
+
+ <div style="display:flex;align-items:center;gap:12px">
+  <span id="roleLabel">Painel do sensei</span>
+  <div class="avatar" id="avatar">S</div>
+ </div>
+</header>
+
+<div class="content">
+
+<div class="notice">
+ <strong>Aviso:</strong> versão inicial. Os dados ficam neste navegador.
+ A integração com Supabase ainda precisa ser configurada.
+</div>
+
+<section class="page active" id="page-inicio">
+
+<div class="welcome">
+ <div>
+  <div class="eyebrow">PAINEL PRINCIPAL</div>
+  <h1 id="welcomeTitle">Bem-vindo ao KIAI MONGAGUÁ</h1>
+  <p class="sub" id="welcomeSub">
+   Acompanhe a rotina da escola em um só lugar.
+  </p>
+ </div>
+
+ <div class="actions">
+  <button class="btn primary" onclick="openAthleteModal()">＋ Novo atleta</button>
+  <button class="btn" onclick="go('frequencia')">Registrar frequência</button>
+ </div>
+</div>
+
+<div class="stats">
+ <div class="stat">Atletas cadastrados<strong id="statAthletes">0</strong></div>
+ <div class="stat">Turmas<strong id="statClasses">0</strong></div>
+ <div class="stat">Presenças<strong id="statPresent">0</strong></div>
+ <div class="stat">Comunicados<strong id="statNews">0</strong></div>
+</div>
+
+<div class="grid2">
+
+<div class="card">
+ <div class="card-head">
+  <h3>Atletas recentes</h3>
+  <button class="btn" onclick="go('atletas')">Ver todos</button>
+ </div>
+ <div id="recentAthletes"></div>
+</div>
+
+<div class="card">
+ <div class="card-head">
+  <h3>Próximas atividades</h3>
+  <button class="btn" onclick="go('agenda')">Agenda</button>
+ </div>
+ <div id="upcoming"></div>
+</div>
+
+</div>
+</section>
+
+<section class="page" id="page-atletas">
+ <div class="welcome">
+  <div>
+   <div class="eyebrow">CADASTROS</div>
+   <h1>Atletas</h1>
+   <p class="sub">Cadastro e consulta dos atletas.</p>
+  </div>
+  <button class="btn primary" id="addAthleteBtn" onclick="openAthleteModal()">＋ Novo atleta</button>
+ </div>
+ <div class="card">
+  <input id="athleteSearch" placeholder="Buscar atleta..." oninput="renderAthletes()">
+  <div id="athleteTable"></div>
+ </div>
+</section>
+
+<section class="page" id="page-responsaveis">
+ <h1>Responsáveis</h1>
+ <button class="btn primary" onclick="openResponsibleModal()">＋ Novo responsável</button>
+ <div class="card"><div id="responsibleTable"></div></div>
+</section>
+
+<section class="page" id="page-turmas">
+ <h1>Turmas</h1>
+ <button class="btn primary" onclick="openClassModal()">＋ Nova turma</button>
+ <div class="stats" id="classCards"></div>
+</section>
+
+<section class="page" id="page-frequencia">
+ <h1>Frequência</h1>
+ <div class="card">
+  <div class="form-grid">
+   <div class="field">
+    <label>Data</label>
+    <input type="date" id="attendanceDate">
+   </div>
+   <div class="field">
+    <label>Turma</label>
+    <select id="attendanceClass"></select>
+   </div>
+  </div>
+  <div id="attendanceList"></div>
+  <button class="btn primary" onclick="saveAttendance()">Salvar chamada</button>
+ </div>
+ <div class="card">
+  <h3>Histórico de frequência</h3>
+  <div id="attendanceHistory"></div>
+ </div>
+</section>
+
+<section class="page" id="page-esportivo">
+ <h1>Histórico esportivo</h1>
+ <button class="btn primary" onclick="openSportModal()">＋ Novo registro</button>
+ <div class="card"><div id="sportTable"></div></div>
+</section>
+
+<section class="page" id="page-agenda">
+ <h1>Agenda e eventos</h1>
+ <button class="btn primary" onclick="openEventModal()">＋ Novo evento</button>
+ <div class="card"><div id="eventList"></div></div>
+</section>
+
+<section class="page" id="page-conteudos">
+ <h1>Conteúdos</h1>
+ <button class="btn primary" onclick="openContentModal()">＋ Adicionar conteúdo</button>
+ <div class="card"><div id="contentList"></div></div>
+</section>
+
+<section class="page" id="page-comunicados">
+ <h1>Comunicados</h1>
+ <button class="btn primary" onclick="openNewsModal()">＋ Novo comunicado</button>
+ <div class="card"><div id="newsList"></div></div>
+</section>
+
+</div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+ <div class="modal">
+  <div class="modal-head">
+   <h3 id="modalTitle">Cadastro</h3>
+   <button class="close" onclick="closeModal()">×</button>
+  </div>
+  <div id="modalBody"></div>
+ </div>
+</div>
+
+<div id="toast"></div>
+</body>
+</html>
